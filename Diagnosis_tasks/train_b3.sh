@@ -1,0 +1,14 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python train.py \
+    --model_name hfl/chinese-macbert-base \
+    --train_path ../data/benchmark3/train.json\
+    --dev_path ../data/benchmark3/dev.json\
+    --test_path ../data/benchmark3/test.json\
+    --batch_size_per_gpu 32\
+    --gradient_accumulation_steps 2\
+    --learning_rate 2e-5 \
+    --task_name spandetection \
+    --epochs 5 \
+    --do_eval True \
+    --do_test True \
+    --do_train True \
+    --focal_alpha 0.35
