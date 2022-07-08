@@ -71,10 +71,10 @@ if __name__ == '__main__':
     # dataset = load_dataset(args.task_name, args.train_path, args.dev_path, args.test_path)
     dataset = load_dataset('json', data_files=data_files)
     pre_metrics = None
-    metric_precision = load_metric("../metrics/precision")
-    metric_recall = load_metric("../metrics/recall")
-    metric_f1 = load_metric("../metrics/f1")
-    metric_accuracy = load_metric("../metrics/accuracy")
+    metric_precision = load_metric("precision")
+    metric_recall = load_metric("recall")
+    metric_f1 = load_metric("f1")
+    metric_accuracy = load_metric("accuracy")
 
     if args.task_name == 'ErroneousDetection':
         input_type = 'pooled_cls'
