@@ -16,6 +16,7 @@ Convert raw data to the format of each task
 ```
 unzip data.zip
 python data/convert_raw_data_to_benchmarks.py 
+python data/convert_gec_format.py
 ```
 ### Benchmarks
 
@@ -37,7 +38,6 @@ sh Diagnosis_tasks/train_b4.sh
 ```
 5.Error Correction
 ```
-python data/convert_gec_format.py
 sh Diagnosis_tasks/train_b5.sh
 ```
 We then use [m2scorer](https://github.com/nusnlp/m2scorer/) to evaluate error correction.
