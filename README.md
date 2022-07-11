@@ -37,12 +37,13 @@ sh Diagnosis_tasks/train_b4.sh
 ```
 5.Error Correction
 ```
-sh Diagnosis_tasks/train_b5.sh
 python data/convert_gec_format.py
+sh Diagnosis_tasks/train_b5.sh
 ```
 We then use [m2scorer](https://github.com/nusnlp/m2scorer/) to evaluate error correction.
 
 6.Generation Pathology Mitigation
 ```
 sh Generation_Pathology_Mitigation/train_b6.sh
+python Generation_Pathology_Mitigation/evaluate.py
 ```
