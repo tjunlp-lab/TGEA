@@ -11,7 +11,7 @@ from transformers import DataCollatorWithPadding, DataCollatorForTokenClassifica
 
 from transformers import  AutoTokenizer, AutoConfig, set_seed
 from transformers import TrainingArguments, Trainer
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)https://github.com/tjunlp-lab/TGEA/blob/main/Diagnosis_tasks/train.py
 def parse_config():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_name", type=str, default="bert-base-chinese")
@@ -239,14 +239,8 @@ if __name__ == '__main__':
             total_recall_misew = []
             text = dataset['text']
             for i in range(len(offsets)):
-                true_prediction = [p for (p, ml) in zip(predictions[i], misew_labels[i]) if ml != -100 and ml != 2]
-                true_label = [l for (l, ml) in zip(labels[i], misew_labels[i]) if ml != -100 and ml != 2]
-
-                for idx in range(len(true_prediction)):
-                    if true_prediction[idx] == 2:
-                        true_prediction[idx] = 0
-                    if true_label[idx] == 2:
-                        true_label[idx] = 0
+                true_prediction = [p for (p, ml) in zip(predictions[i], misew_labels[i]) if ml != -100]
+                true_label = [l for (l, ml) in zip(labels[i], misew_labels[i]) if ml != -100]
 
                 offset = [o for o in offsets[i] if (o[1] - o[0]) != 0]
                 mapping_prediction = []
@@ -258,7 +252,7 @@ if __name__ == '__main__':
                 accuracy = metric_accuracy.compute(predictions=mapping_prediction, references=mapping_label)
                 precision = metric_precision.compute(predictions=mapping_prediction, references=mapping_label)
                 recall = metric_recall.compute(predictions=mapping_prediction, references=mapping_label)
-
+                '''
                 true_prediction_misew = [p for (p, ml) in zip(predictions[i], misew_labels[i]) if ml != -100]
                 true_label_misew = [l for (l, ml) in zip(labels[i], misew_labels[i]) if ml != -100]
 
@@ -282,16 +276,18 @@ if __name__ == '__main__':
                 accuracy_misew = metric_accuracy.compute(predictions=mapping_prediction_misew, references=mapping_label_misew)
                 precision_misew = metric_precision.compute(predictions=mapping_prediction_misew, references=mapping_label_misew)
                 recall_misew = metric_recall.compute(predictions=mapping_prediction_misew, references=mapping_label_misew)
-
+                '''
 
                 total_f1.append(f1['f1'])
                 total_accuracy.append(accuracy['accuracy'])
                 total_precision.append(precision['precision'])
                 total_recall.append(recall['recall'])
+                '''
                 total_f1_misew.append(f1_misew['f1'])
                 total_accuracy_misew.append(accuracy_misew['accuracy'])
                 total_precision_misew.append(precision_misew['precision'])
                 total_recall_misew.append(recall_misew['recall'])
+                '''
             result = {
                       'accuracy': np.mean(total_accuracy),
                       'precision': np.mean(total_precision),
